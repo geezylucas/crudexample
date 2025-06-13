@@ -85,6 +85,7 @@ class PostgreSQLConnection:
         connection = None
         try:
             connection = self.engine.connect()
+            logger.info("Conexión establecida exitosamente")
             yield connection
         except SQLAlchemyError as e:
             logger.error(f"Error de SQLAlchemy: {str(e)}")
@@ -99,6 +100,7 @@ class PostgreSQLConnection:
         finally:
             if connection:
                 connection.close()
+                logger.info("Conexión cerrada")
 
     def test_connection(self):
         """
